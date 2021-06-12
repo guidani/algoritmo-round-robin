@@ -7,15 +7,21 @@ def rr(processos, quantum):
         qtd_processos_prontos -= 1
 
 
-def deduz(array, q):
-    print(f"Array recebido {array}")
+def deduz(processos, quantum):
+    print(f"Array recebido {processos}")
     novo_array = []
     valor = 0
-    for item in array:
-        if item <= q:
+    acc_time = 0
+    array_acc_time = []
+    for item in processos:
+        if item <= quantum:
             valor -= item
+            acc_time += item # TODO
+            array_acc_time.append(acc_time) # TODO
         else:
-            valor = item - q
+            valor = item - quantum
+            acc_time += quantum # TODO
+            array_acc_time.append(acc_time) # TODO
         # valor = 0 apenas pra aparecer na tabela
         if valor < 0:
             valor = 0
@@ -25,6 +31,9 @@ def deduz(array, q):
         # if valor > 0:
         #     novo_array.append(valor)
     print(f"Array de saida {novo_array}")
+    print(f"Tempo acumulado {acc_time}")
+    print(f"Array de tempos {array_acc_time}")
+    print(f"*"*50)
     return novo_array
 
 

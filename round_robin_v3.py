@@ -1,7 +1,6 @@
-def circular(fila_de_processos, quantum, tc):
+def circular(fila_de_processos, quantum):
     turn_around = [0] * len(fila_de_processos)  # vai receber o tempo_atual em que cada processo terminou a execução
 
-    trocasDeContexto = 0
     tempo_atual = 0  # tamanho da fatia executada + troca de contexto
     while True:
         if sum(fila_de_processos) <= 0:
@@ -19,20 +18,14 @@ def circular(fila_de_processos, quantum, tc):
                     if fila_de_processos[i] == 0:
                         turn_around[i] = tempo_atual
                         print(f"Processo P{i} terminou em T-{tempo_atual}")
-                    if fila_de_processos.count(0) > 0:
-                        trocasDeContexto += 1
                 else:
                     tempo_atual += quantum
                     fila_de_processos[i] -= quantum
                     print(f"P{i} executa")
                     print(f"Termino em T-{tempo_atual}")
                     turn_around[i] = tempo_atual
-                if fila_de_processos.count(0) > 0:
-                    trocasDeContexto += 1
-                    tempo_atual += tc
             print("-"*30)
 
-    print(f"Total de trocas de contexto> {trocasDeContexto}")
     print(f"tempo onde Terminou cada processo: {turn_around}")
     return turn_around
 
@@ -45,6 +38,5 @@ if __name__ == '__main__':
     fila_de_processos = [40, 20, 50, 30]
     # fila_de_processos = [40, 20]
     quantum = 20
-    troca_contexto = 5
-    turnAround = circular(fila_de_processos, quantum, troca_contexto)
+    turnAround = circular(fila_de_processos, quantum)
     tempo_atual_medio_turnaround(fila_de_processos, turnAround)

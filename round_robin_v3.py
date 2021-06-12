@@ -3,7 +3,6 @@ def circular(fila_de_processos, quantum, tc):
 
     trocasDeContexto = 0
     tempo_atual = 0  # tamanho da fatia executada + troca de contexto
-    processo_que_executou_antes = 0
     while True:
         if sum(fila_de_processos) <= 0:
             print("Todos os processos foram executados!")
@@ -11,7 +10,6 @@ def circular(fila_de_processos, quantum, tc):
         else:
             for i in range(len(fila_de_processos)):
                 if fila_de_processos[i] <= 0:
-                    # print(f"Processo P{i} terminou em T-{tempo_atual}")
                     print(f"P{i} já Finalizado")
                 elif fila_de_processos[i] <= quantum:
                     tempo_atual += fila_de_processos[i]
@@ -21,19 +19,17 @@ def circular(fila_de_processos, quantum, tc):
                     if fila_de_processos[i] == 0:
                         turn_around[i] = tempo_atual
                         print(f"Processo P{i} terminou em T-{tempo_atual}")
-                    elif fila_de_processos.count(0) > 0:
+                    if fila_de_processos.count(0) > 0:
                         trocasDeContexto += 1
-                        tempo_atual += tc
                 else:
-                    processo_que_executou_antes = i
                     tempo_atual += quantum
                     fila_de_processos[i] -= quantum
                     print(f"P{i} executa")
                     print(f"Termino em T-{tempo_atual}")
-                    if fila_de_processos.count(0) > 0:
-                        trocasDeContexto += 1
-                        tempo_atual += tc
                     turn_around[i] = tempo_atual
+                if fila_de_processos.count(0) > 0:
+                    trocasDeContexto += 1
+                    tempo_atual += tc
             print("-"*30)
 
     print(f"Total de trocas de contexto> {trocasDeContexto}")

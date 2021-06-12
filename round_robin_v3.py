@@ -1,7 +1,7 @@
 def circular(fila_de_processos, quantum):
     turn_around = [0] * len(fila_de_processos)  # vai receber o tempo_atual em que cada processo terminou a execução
 
-    tempo_atual = 0  # tamanho da fatia executada + troca de contexto
+    tempo_atual = 0  # tamanho da fatia executada
     while True:
         if sum(fila_de_processos) <= 0:
             print("Todos os processos foram executados!")

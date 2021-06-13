@@ -42,17 +42,17 @@ def tempo_atual_medio_turnaround(lista_de_processos, lista_de_tempos):
 
 
 if __name__ == '__main__':
-    fila_de_processos = [40, 20, 50, 30]
-    quantum = 20
-    troca_de_contexto = 5
+    # fila_de_processos = [40, 20, 50, 30]
+    # quantum = 20
+    # troca_de_contexto = 5
 
     # fila_de_processos = [40, 20]
     # quantum = 20
     # troca_de_contexto = 5
 
-    # fila_de_processos = [10, 7, 8]
-    # quantum = 3
-    # troca_de_contexto = 1
+    fila_de_processos = [10, 7, 8]
+    quantum = 3
+    troca_de_contexto = 1
 
     turnAround = circular(fila_de_processos, quantum, troca_de_contexto)
     tempo_atual_medio_turnaround(fila_de_processos, turnAround)
